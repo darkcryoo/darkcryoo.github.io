@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #303233;
+    margin-bottom: 60px;
+}
+
+.hca-mark {
+    padding: 10px 45px 10px 45px;
+    margin: 30px;
+    min-height: 60px;
+    border-radius: 9px;
+    font-size: 14px;
+    box-shadow: 0 2px 17px 2px rgb(0 0 0 / 10%);
+}
+
+.hca-mark>p {
+    margin-top: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
