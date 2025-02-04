@@ -207,50 +207,170 @@ a:hover {
 
 /* Footer */
 .site-footer {
-    margin-top: var(--space-xl);
-    padding: var(--space-lg) 0;
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl) 0;
     border-top: 1px solid var(--color-gray-light);
-    color: var(--color-gray-medium);
+    background: var(--color-gray-light);
 }
 
 .footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.footer-heading {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-md);
+}
+
+.footer-nav,
+.footer-social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav li,
+.footer-social li {
+    margin-bottom: var(--space-xs);
+}
+
+.footer-nav a,
+.footer-social a {
+    color: var(--color-gray-dark);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition-base);
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+    color: var(--color-black);
+    border-bottom-color: var(--color-black);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-gray-medium);
+    color: var(--color-gray-dark);
+    font-size: var(--text-sm);
+}
+
+/* Skip Link - Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-black);
+    color: var(--color-white);
+    padding: var(--space-sm) var(--space-md);
+    z-index: 100;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Header & Navigation */
+.site-header {
+    border-bottom: 1px solid var(--color-gray-light);
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-xl);
+}
+
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.social-links a {
-    margin-left: var(--space-sm);
-    color: var(--color-gray-medium);
-    border-bottom: none;
-    transition: color var(--transition-base);
-}
-
-.social-links a:hover {
+.site-title {
+    font-size: var(--text-xl);
+    font-weight: 700;
     color: var(--color-black);
+    text-decoration: none;
+    border-bottom: none;
 }
 
-/* Code Blocks */
-pre, code {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    background: var(--color-gray-light);
-    border-radius: 4px;
+.site-nav {
+    display: flex;
+    align-items: center;
 }
 
-code {
-    padding: 0.2em 0.4em;
-}
-
-pre {
-    padding: var(--space-md);
-    overflow-x: auto;
-    margin: var(--space-md) 0;
-}
-
-pre code {
+.nav-toggle {
+    display: none;
     background: none;
+    border: none;
+    padding: var(--space-xs);
+    cursor: pointer;
+}
+
+.hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-black);
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-black);
+    transition: transform 0.2s ease;
+}
+
+.hamburger::before {
+    top: -6px;
+}
+
+.hamburger::after {
+    bottom: -6px;
+}
+
+[aria-expanded="true"] .hamburger {
+    background: transparent;
+}
+
+[aria-expanded="true"] .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+[aria-expanded="true"] .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
     padding: 0;
+    gap: var(--space-lg);
+}
+
+.nav-menu a {
+    color: var(--color-gray-dark);
+    text-decoration: none;
+    font-size: var(--text-base);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-base);
+}
+
+.nav-menu a:hover,
+.nav-menu a[aria-current="page"] {
+    color: var(--color-black);
+    border-bottom-color: var(--color-black);
 }
 
 /* Responsive Design */
@@ -275,21 +395,44 @@ pre code {
     }
 
     .footer-content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
         text-align: center;
+    }
+
+    .footer-nav,
+    .footer-social {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: var(--space-md);
     }
 
-    .social-links {
-        margin-top: var(--space-sm);
+    .footer-nav li,
+    .footer-social li {
+        margin: 0;
     }
 
-    .social-links a:first-child {
-        margin-left: 0;
+    .nav-toggle {
+        display: block;
     }
 
-    .nav-links {
-        display: none; /* Consider adding a mobile menu */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-white);
+        padding: var(--space-md);
+        border-bottom: 1px solid var(--color-gray-light);
+        flex-direction: column;
+        gap: var(--space-md);
+        z-index: 100;
+    }
+
+    .nav-menu.active {
+        display: flex;
     }
 }
 
