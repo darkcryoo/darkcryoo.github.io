@@ -239,6 +239,70 @@ The deployment pipeline includes automated performance monitoring:
 - Assets integrity verification
 - Regular dependency updates
 
+## Security & Dependencies
+
+This blog implements comprehensive security measures and automated dependency management.
+
+### Security Features
+
+1. **Automated Security Scanning**
+   - CodeQL analysis for JavaScript and Ruby
+   - Weekly scheduled scans
+   - Pull request integration
+   - Security issue alerts
+
+2. **Dependency Management**
+   - Automated updates via Dependabot
+   - Weekly update schedule
+   - Separate PRs for npm and Bundler
+   - Automatic security patches
+
+3. **Security Headers**
+   ```http
+   Strict-Transport-Security: max-age=31536000
+   Content-Security-Policy: default-src 'self'
+   X-Frame-Options: DENY
+   X-Content-Type-Options: nosniff
+   ```
+
+4. **Protected Branches**
+   - Required reviews for main branch
+   - Status checks must pass
+   - Linear history enforced
+
+### Vulnerability Reporting
+
+Please see our [Security Policy](SECURITY.md) for:
+- Supported versions
+- Reporting process
+- Disclosure policy
+- Security measures
+
+### Dependency Updates
+
+Dependabot maintains three ecosystems:
+1. **NPM Packages**
+   - Weekly updates on Monday
+   - Automated version bumps
+   - Security patches prioritized
+
+2. **Ruby Gems**
+   - Weekly updates on Monday
+   - Conservative update strategy
+   - Compatibility checks
+
+3. **GitHub Actions**
+   - Weekly workflow updates
+   - Action version management
+   - Security maintenance
+
+### Update Process
+
+1. Dependabot creates separate PRs
+2. CI runs all tests
+3. CodeQL performs security scan
+4. Review and merge if passing
+
 ## Contributing
 
 1. Create a new branch: `git checkout -b feature-name`
