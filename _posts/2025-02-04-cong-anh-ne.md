@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Xin chào! Mình là Công Anh"
-date: 2025-02-04
+date: 2025-02-04 21:30:00 +0700
 tags: [introduction]
 ---
 
@@ -18,7 +18,7 @@ def greet(name="World"):
 print(greet())  # Outputs: Hello, World!
 ```
 
-``cpp
+```cpp
 cout << "Hello, World!" << endl; // Outputs: Hello, World!
 ```
 
