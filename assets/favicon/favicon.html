@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <canvas id="favicon" width="32" height="32"></canvas>
+    <script>
+        const canvas = document.getElementById('favicon');
+        const ctx = canvas.getContext('2d');
+
+        // Draw black background
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, 32, 32);
+
+        // Draw white 'B'
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 24px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('B', 16, 16);
+    </script>
+</body>
+</html>
