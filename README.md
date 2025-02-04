@@ -101,6 +101,72 @@ Use the following HTML pattern for responsive images:
 </picture>
 ```
 
+## Testing
+
+This blog includes a comprehensive testing suite using Jest and Testing Library. The tests cover:
+
+- JavaScript functionality
+- DOM interactions
+- Accessibility features
+- Responsive design behavior
+
+### Running Tests
+
+```bash
+# Install dependencies
+npm install
+
+# Run all tests
+npm test
+
+# Run tests in watch mode (during development)
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+```
+
+### Test Structure
+
+Tests are organized in the `tests/` directory:
+
+```
+tests/
+├── setup.js           # Jest setup and global mocks
+├── navigation.test.js # Navigation component tests
+└── ...               # Other test files
+```
+
+### Code Quality
+
+The project uses ESLint and Prettier for code quality and formatting:
+
+```bash
+# Run linter
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+```
+
+### Writing Tests
+
+When adding new features, please follow these testing guidelines:
+
+1. Create test files alongside the feature files
+2. Include unit tests for all JavaScript functions
+3. Add integration tests for DOM interactions
+4. Test accessibility features
+5. Ensure responsive design tests
+6. Maintain high test coverage
+
+### Continuous Integration
+
+The test suite runs automatically on:
+- Every pull request
+- Merges to main branch
+- Release tags
+
 ## Contributing
 
 1. Create a new branch: `git checkout -b feature-name`
