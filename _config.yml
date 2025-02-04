@@ -1,16 +1,34 @@
 # Site settings
-title: My Personal Blog
-description: A minimalist, trendsetting personal blog
-author: Your Name
+title: Your Minimalist Blog
 email: your-email@example.com
+description: >-
+  A clean, minimalist blog focused on content and readability.
+  Sharing thoughts on design, technology, and minimalism.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://yourdomain.com" # the base hostname & protocol
+lang: en
+timezone: Asia/Bangkok
+
+# Author settings
+author:
+  name: Your Name
+  bio: >-
+    A writer and developer passionate about creating meaningful content 
+    and beautiful digital experiences.
+  avatar: /assets/images/avatar.jpg
+
+# Social settings
+github_username: yourusername
+twitter_username: yourusername
+linkedin_username: yourusername
 
 # Build settings
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
-paginate: 10
-paginate_path: "/page/:num/"
+kramdown:
+  syntax_highlighter: rouge
+  input: GFM
+  auto_ids: true
+  toc_levels: 1..3
 
 # Plugin settings
 plugins:
@@ -19,22 +37,15 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
 
-# Exclude from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - .git
-  - .gitignore
-  - README.md
-  - LICENSE
+# Pagination
+paginate: 10
+paginate_path: "/page/:num/"
 
 # Collections
 collections:
   pages:
     output: true
-    permalink: /:path/
+    permalink: /:name
 
 # Defaults
 defaults:
@@ -44,8 +55,52 @@ defaults:
     values:
       layout: "post"
       comments: true
+      author: Your Name
+      image: /assets/images/default-post.jpg
   - scope:
       path: ""
       type: "pages"
     values:
-      layout: "page"
+      layout: "default"
+
+# Compression settings
+sass:
+  style: compressed
+  sourcemap: never
+
+# Performance settings
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: [development]
+  blanklines: false
+  profile: false
+  startings: [html, head, body]
+
+# SEO settings
+twitter:
+  username: yourusername
+  card: summary_large_image
+
+social:
+  name: Your Name
+  links:
+    - https://twitter.com/yourusername
+    - https://github.com/yourusername
+    - https://linkedin.com/in/yourusername
+
+# Analytics and tracking
+google_analytics: UA-XXXXXXXX-X
+google_site_verification: your-verification-code
+
+# Security headers
+webmaster_verifications:
+  google: your-verification-code
+  bing: your-verification-code
+
+# Cache settings
+cache:
+  type: memory
+  max_age: 600
