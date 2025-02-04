@@ -167,6 +167,78 @@ The test suite runs automatically on:
 - Merges to main branch
 - Release tags
 
+## Deployment
+
+This blog is set up for continuous deployment to GitHub Pages using GitHub Actions.
+
+### Deployment Pipeline
+
+The deployment process includes:
+
+1. **Testing**
+   - Runs unit and integration tests
+   - Performs linting checks
+   - Generates test coverage report
+
+2. **Building**
+   - Builds Jekyll site in production mode
+   - Optimizes assets and images
+   - Generates service worker
+
+3. **Deployment**
+   - Deploys to GitHub Pages
+   - Updates custom domain
+   - Preserves Jekyll plugins
+
+4. **Quality Checks**
+   - Runs Lighthouse audits
+   - Checks performance metrics
+   - Validates PWA functionality
+
+### Manual Deployment
+
+To deploy manually:
+
+```bash
+# Build the site
+JEKYLL_ENV=production bundle exec jekyll build
+
+# Test the build locally
+bundle exec jekyll serve --detach
+
+# Deploy (if not using GitHub Actions)
+./scripts/deploy.sh
+```
+
+### Performance Monitoring
+
+The deployment pipeline includes automated performance monitoring:
+
+- Lighthouse scores for each deploy
+- Performance regression detection
+- Accessibility compliance checks
+- SEO optimization validation
+
+### Custom Domain Setup
+
+1. Update the `CNAME` in the GitHub Actions workflow
+2. Configure DNS settings:
+   ```
+   Type  Name  Value
+   A     @     185.199.108.153
+   A     @     185.199.109.153
+   A     @     185.199.110.153
+   A     @     185.199.111.153
+   CNAME www   yourdomain.github.io
+   ```
+
+### Security
+
+- HTTPS enforced by default
+- Security headers configured
+- Assets integrity verification
+- Regular dependency updates
+
 ## Contributing
 
 1. Create a new branch: `git checkout -b feature-name`
