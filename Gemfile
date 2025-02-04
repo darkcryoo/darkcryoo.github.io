@@ -12,6 +12,6 @@ group :jekyll_plugins do
   gem "jekyll-paginate", "~> 1.1.0" 
 end
 
-platforms :mingw, :x64_mingw, :mswin, :jruby do
-  gem "wdm", "~> 0.1.1"
-end
+# platforms :mingw, :x64_mingw, :mswin, :jruby do
+#   gem "wdm", "~> 0.1.1"
+# end
