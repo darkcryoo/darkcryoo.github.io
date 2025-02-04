@@ -1,0 +1,124 @@
+---
+layout: default
+title: Offline
+permalink: /offline.html
+---
+
+<div class="offline-page">
+    <header class="offline-header">
+        <h1>You're Offline</h1>
+        <p>It seems you've lost your internet connection. Don't worry though, you can still access previously visited pages!</p>
+    </header>
+
+    <div class="offline-content">
+        <h2>What you can do:</h2>
+        <ul>
+            <li>Check your internet connection</li>
+            <li>Try refreshing the page when you're back online</li>
+            <li>Browse through cached pages using the navigation menu</li>
+        </ul>
+
+        <div class="offline-actions">
+            <button onclick="window.location.reload()" class="refresh-button">
+                Try Again
+            </button>
+            <a href="/" class="home-button">Go to Homepage</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .offline-page {
+        text-align: center;
+        padding: var(--space-2xl) var(--space-md);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .offline-header {
+        margin-bottom: var(--space-xl);
+    }
+
+    .offline-header h1 {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-md);
+    }
+
+    .offline-header p {
+        color: var(--color-gray-dark);
+        font-size: var(--text-lg);
+        line-height: 1.6;
+    }
+
+    .offline-content {
+        text-align: left;
+    }
+
+    .offline-content h2 {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-md);
+    }
+
+    .offline-content ul {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: var(--space-xl);
+    }
+
+    .offline-content li {
+        margin: var(--space-sm) 0;
+        padding-left: var(--space-lg);
+        position: relative;
+    }
+
+    .offline-content li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--color-gray-medium);
+    }
+
+    .offline-actions {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        margin-top: var(--space-xl);
+    }
+
+    .refresh-button,
+    .home-button {
+        padding: var(--space-sm) var(--space-lg);
+        border: 2px solid var(--color-black);
+        background: var(--color-white);
+        color: var(--color-black);
+        font-size: var(--text-base);
+        cursor: pointer;
+        transition: all var(--transition-base);
+        text-decoration: none;
+    }
+
+    .refresh-button {
+        background: var(--color-black);
+        color: var(--color-white);
+    }
+
+    .refresh-button:hover {
+        opacity: 0.9;
+    }
+
+    .home-button:hover {
+        background: var(--color-gray-light);
+    }
+
+    @media (max-width: 768px) {
+        .offline-actions {
+            flex-direction: column;
+        }
+
+        .refresh-button,
+        .home-button {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
