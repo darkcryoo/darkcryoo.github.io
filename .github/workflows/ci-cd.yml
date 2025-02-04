@@ -97,7 +97,7 @@ jobs:
     
     steps:
       - name: Audit with Lighthouse
-        uses: treosh/lighthouse-ci-action@v9
+        uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
             https://yourdomain.com/
