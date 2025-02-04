@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Pattern -->
+    <rect width="800" height="600" fill="#F9FAFB"/>
+    <path d="M100 100h600v400h-600z" fill="url(#grid)"/>
+    
+    <!-- Main Elements -->
+    <rect x="150" y="150" width="500" height="300" rx="8" fill="white" stroke="#E5E7EB" stroke-width="2"/>
+    <rect x="180" y="180" width="300" height="24" rx="4" fill="#F3F4F6"/>
+    <rect x="180" y="220" width="440" height="16" rx="4" fill="#F3F4F6"/>
+    <rect x="180" y="250" width="380" height="16" rx="4" fill="#F3F4F6"/>
+    
+    <!-- Code Window -->
+    <rect x="180" y="300" width="440" height="120" rx="8" fill="#1F2937"/>
+    <circle cx="200" cy="320" r="4" fill="#EF4444"/>
+    <circle cx="220" cy="320" r="4" fill="#F59E0B"/>
+    <circle cx="240" cy="320" r="4" fill="#10B981"/>
+    
+    <!-- Code Lines -->
+    <rect x="200" y="340" width="200" height="4" rx="2" fill="#6366F1" fill-opacity="0.6"/>
+    <rect x="200" y="360" width="300" height="4" rx="2" fill="#8B5CF6" fill-opacity="0.6"/>
+    <rect x="200" y="380" width="250" height="4" rx="2" fill="#EC4899" fill-opacity="0.6"/>
+    
+    <!-- Floating Elements -->
+    <circle cx="600" cy="200" r="40" fill="url(#gradient1)"/>
+    <rect x="550" y="400" width="80" height="80" rx="8" fill="url(#gradient2)" transform="rotate(-15)"/>
+    <path d="M700 300l-40 40l40 40" stroke="url(#gradient3)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Gradients -->
+    <defs>
+        <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M0 0h20v20h-20z" fill="none"/>
+            <path d="M0 0h1v1h-1z" fill="#E5E7EB"/>
+        </pattern>
+        
+        <linearGradient id="gradient1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6366F1"/>
+            <stop offset="100%" stop-color="#8B5CF6"/>
+        </linearGradient>
+        
+        <linearGradient id="gradient2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#EC4899"/>
+            <stop offset="100%" stop-color="#8B5CF6"/>
+        </linearGradient>
+        
+        <linearGradient id="gradient3" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6366F1"/>
+            <stop offset="100%" stop-color="#EC4899"/>
+        </linearGradient>
+    </defs>
+</svg>

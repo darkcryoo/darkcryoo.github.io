@@ -1,0 +1,484 @@
+---
+layout: default
+---
+
+<div class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <span class="hero-eyebrow">Welcome to My Blog</span>
+            <h1 class="hero-title">Exploring the World of Technology & Development</h1>
+            <p class="hero-subtitle">Join me on a journey through web development, programming, and tech insights.</p>
+            <div class="hero-buttons">
+                <a href="/blog" class="cta-button">
+                    <span>Start Reading</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="/assets/images/hero-illustration.svg" alt="Blog Hero Image">
+        </div>
+    </div>
+</div>
+
+<section class="featured-posts">
+    <div class="section-header">
+        <div class="section-title">
+            <h2>Latest Articles</h2>
+            <p>Discover my latest thoughts and insights</p>
+        </div>
+        <a href="/blog" class="view-all">
+            View All
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
+    </div>
+    <div class="post-grid">
+        {% for post in site.posts limit:4 %}
+        <article class="post-card">
+            {% if post.cover_image %}
+            <div class="post-image">
+                <img src="{{ post.cover_image }}" alt="{{ post.title }}">
+                {% if post.tags.size > 0 %}
+                <div class="post-tag">{{ post.tags | first }}</div>
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="post-content">
+                <div class="post-meta">
+                    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+                    <span class="post-author">
+                        {% if post.author_avatar %}
+                        <img src="{{ post.author_avatar }}" alt="{{ post.author }}" class="author-avatar">
+                        {% endif %}
+                        {{ post.author | default: site.author.name }}
+                    </span>
+                </div>
+                <h3 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                <a href="{{ post.url }}" class="read-more">
+                    Read Article
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="topics">
+    <div class="section-header">
+        <div class="section-title">
+            <h2>Popular Topics</h2>
+            <p>Browse articles by topic</p>
+        </div>
+    </div>
+    <div class="topic-grid">
+        {% assign tags = site.tags | sort %}
+        {% for tag in tags limit:6 %}
+        <a href="/tags/#{{ tag[0] }}" class="topic-card">
+            <div class="topic-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+            </div>
+            <div class="topic-content">
+                <h3>{{ tag[0] | capitalize }}</h3>
+                <span>{{ tag[1].size }} articles</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="newsletter">
+    <div class="newsletter-content">
+        <div class="newsletter-text">
+            <h2>Stay in the Loop</h2>
+            <p>Get notified when I publish new articles. No spam, unsubscribe at any time.</p>
+        </div>
+        <form class="newsletter-form" action="#" method="POST">
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="subscribe-button">
+                <span>Subscribe</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </form>
+    </div>
+</section>
+
+<style>
+    .hero {
+        padding: var(--space-12) 0;
+        margin-bottom: var(--space-12);
+    }
+
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        align-items: center;
+    }
+
+    .hero-text {
+        max-width: 600px;
+    }
+
+    .hero-eyebrow {
+        display: inline-block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--color-accent);
+        margin-bottom: var(--space-2);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: var(--space-4);
+        background: linear-gradient(to right, var(--color-text), var(--color-accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-6);
+        line-height: 1.6;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius);
+    }
+
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-3) var(--space-6);
+        background: var(--color-accent);
+        color: white;
+        border-radius: var(--radius);
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: var(--space-8);
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: var(--space-2);
+    }
+
+    .section-title p {
+        color: var(--color-text-muted);
+    }
+
+    .view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        color: var(--color-accent);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .post-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-8);
+    }
+
+    .post-card {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: var(--transition);
+    }
+
+    .post-card:hover {
+        border-color: var(--color-accent);
+        transform: translateY(-2px);
+    }
+
+    .post-image {
+        position: relative;
+        aspect-ratio: 16/9;
+    }
+
+    .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .post-tag {
+        position: absolute;
+        top: var(--space-4);
+        left: var(--space-4);
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius);
+        font-size: 0.75rem;
+        backdrop-filter: blur(4px);
+    }
+
+    .post-content {
+        padding: var(--space-6);
+    }
+
+    .post-meta {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+    }
+
+    .post-author {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    .author-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+    }
+
+    .post-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: var(--space-3);
+        line-height: 1.3;
+    }
+
+    .post-title a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .post-excerpt {
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-4);
+        line-height: 1.6;
+    }
+
+    .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        color: var(--color-accent);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .topic-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-4);
+    }
+
+    .topic-card {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-4);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+    }
+
+    .topic-card:hover {
+        border-color: var(--color-accent);
+        transform: translateY(-2px);
+    }
+
+    .topic-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: var(--color-bg-subtle);
+        border-radius: var(--radius);
+        color: var(--color-accent);
+    }
+
+    .topic-content h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: var(--space-1);
+    }
+
+    .topic-content span {
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+    }
+
+    .newsletter {
+        margin: var(--space-12) 0;
+        padding: var(--space-8);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+    }
+
+    .newsletter-content {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .newsletter-text {
+        margin-bottom: var(--space-6);
+    }
+
+    .newsletter-text h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: var(--space-2);
+    }
+
+    .newsletter-text p {
+        color: var(--color-text-muted);
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: var(--space-4);
+    }
+
+    .form-group {
+        position: relative;
+        flex: 1;
+    }
+
+    .form-group svg {
+        position: absolute;
+        left: var(--space-3);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--color-text-muted);
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: var(--space-3) var(--space-3) var(--space-3) var(--space-10);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--color-accent);
+    }
+
+    .subscribe-button {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-3) var(--space-6);
+        background: var(--color-accent);
+        color: white;
+        border: none;
+        border-radius: var(--radius);
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .subscribe-button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+    }
+
+    .topics {
+        margin-top: var(--space-20);
+    }
+
+    @media (max-width: 1024px) {
+        .hero-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .hero-text {
+            max-width: 100%;
+        }
+
+        .hero-buttons {
+            justify-content: center;
+        }
+
+        .post-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .topic-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .topic-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+
+        .subscribe-button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

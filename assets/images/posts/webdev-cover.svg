@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="675" fill="#F9FAFB"/>
+    <rect x="0" y="0" width="1200" height="675" fill="url(#paint0_linear)"/>
+    <path d="M450 200L600 300L750 200L600 100L450 200Z" fill="#0070F3"/>
+    <path d="M450 300L600 400L750 300L600 200L450 300Z" fill="#7928CA"/>
+    <path d="M300 250L450 350L600 250L450 150L300 250Z" fill="#0070F3" fill-opacity="0.5"/>
+    <path d="M600 250L750 350L900 250L750 150L600 250Z" fill="#7928CA" fill-opacity="0.5"/>
+    <text x="600" y="550" text-anchor="middle" font-family="system-ui" font-size="48" fill="#1F2937">Modern Web Development</text>
+    <defs>
+        <linearGradient id="paint0_linear" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E0E7FF"/>
+            <stop offset="1" stop-color="#FFFFFF"/>
+        </linearGradient>
+    </defs>
+</svg>

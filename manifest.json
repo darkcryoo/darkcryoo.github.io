@@ -1,7 +1,7 @@
 {
-  "name": "Your Minimalist Blog",
-  "short_name": "MinBlog",
-  "description": "A clean, minimalist blog focused on content and readability",
+  "name": "Cong Anh Blog",
+  "short_name": "CAnhBlog",
+  "description": "Chia se kien thuc lap trinh, AI,...",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

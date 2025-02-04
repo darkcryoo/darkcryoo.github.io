@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="675" fill="#F9FAFB"/>
+    <rect x="0" y="0" width="1200" height="675" fill="url(#paint0_linear)"/>
+    <path d="M600 250C644.183 250 680 214.183 680 170C680 125.817 644.183 90 600 90C555.817 90 520 125.817 520 170C520 214.183 555.817 250 600 250Z" fill="#CC0000"/>
+    <path d="M600 280C500 280 420 360 420 460V500H780V460C780 360 700 280 600 280Z" fill="#CC0000"/>
+    <text x="600" y="600" text-anchor="middle" font-family="system-ui" font-size="48" fill="#1F2937">Getting Started with Jekyll</text>
+    <defs>
+        <linearGradient id="paint0_linear" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FEE2E2"/>
+            <stop offset="1" stop-color="#FFFFFF"/>
+        </linearGradient>
+    </defs>
+</svg>

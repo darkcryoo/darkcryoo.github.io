@@ -1,5 +1,5 @@
 # Site settings
-title: Your Minimalist Blog
+title: Cong Anh Blog
 email: your-email@example.com
 description: >-
   A clean, minimalist blog focused on content and readability.
@@ -11,14 +11,14 @@ timezone: Asia/Bangkok
 
 # Author settings
 author:
-  name: Your Name
+  name: Cong Anh
   bio: >-
     A writer and developer passionate about creating meaningful content 
     and beautiful digital experiences.
   avatar: /assets/images/avatar.jpg
 
 # Social settings
-github_username: yourusername
+github_username: conganh
 twitter_username: yourusername
 linkedin_username: yourusername
 
@@ -55,7 +55,7 @@ defaults:
     values:
       layout: "post"
       comments: true
-      author: Your Name
+      author: Cong Anh
       image: /assets/images/default-post.jpg
   - scope:
       path: ""
@@ -85,10 +85,10 @@ twitter:
   card: summary_large_image
 
 social:
-  name: Your Name
+  name: Cong Anh
   links:
     - https://twitter.com/yourusername
-    - https://github.com/yourusername
+    - https://github.com/darkcryoo
     - https://linkedin.com/in/yourusername
 
 # Analytics and tracking
@@ -104,3 +104,10 @@ webmaster_verifications:
 cache:
   type: memory
   max_age: 600
+
+# 404 Page settings
+page_not_found:
+  title: Page Not Found
+  description: The page you're looking for doesn't exist or has been moved.
+  show_search: true
+  show_recent_posts: true

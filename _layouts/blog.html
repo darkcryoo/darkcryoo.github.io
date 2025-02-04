@@ -10,21 +10,30 @@ layout: default
 <div class="post-grid">
     {% for post in site.posts %}
     <a href="{{ post.url }}" class="post-card">
-        <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
-        <h2 class="post-title">{{ post.title }}</h2>
-        <div class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</div>
-        <div class="post-meta">
-            <div class="post-author">
-                {% if post.author_avatar %}
-                <img src="{{ post.author_avatar }}" alt="{{ post.author }}" class="author-avatar">
+        {% if post.cover_image %}
+        <div class="post-image">
+            <img src="{{ post.cover_image }}" alt="{{ post.title }}">
+        </div>
+        {% endif %}
+        <div class="post-content">
+            <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</div>
+        </div>
+        <div class="post-footer">
+            <div class="post-meta">
+                <div class="post-author">
+                    {% if post.author_avatar %}
+                    <img src="{{ post.author_avatar }}" alt="{{ post.author }}" class="author-avatar">
+                    {% endif %}
+                    <span>{{ post.author | default: site.author.name }}</span>
+                </div>
+                {% if post.tags.size > 0 %}
+                <div class="post-tags">
+                    {{ post.tags | first }}
+                </div>
                 {% endif %}
-                <span>{{ post.author | default: site.author.name }}</span>
             </div>
-            {% if post.tags.size > 0 %}
-            <div class="post-tags">
-                {{ post.tags | first }}
-            </div>
-            {% endif %}
         </div>
     </a>
     {% endfor %}
@@ -40,11 +49,38 @@ layout: default
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: var(--space-2);
+        background: linear-gradient(to right, var(--color-accent), #7928ca);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     .blog-header p {
         color: var(--color-text-muted);
         font-size: 1.125rem;
+    }
+
+    .post-image {
+        margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-4);
+        border-radius: var(--radius) var(--radius) 0 0;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+    }
+
+    .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .post-content {
+        flex-grow: 1;
+    }
+
+    .post-footer {
+        margin-top: var(--space-4);
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-border);
     }
 
     .post-tags {
@@ -53,5 +89,24 @@ layout: default
         border-radius: var(--radius);
         font-size: 0.75rem;
         color: var(--color-text-muted);
+    }
+
+    .post-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .post-author {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: 0.875rem;
+    }
+
+    .author-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
     }
 </style>

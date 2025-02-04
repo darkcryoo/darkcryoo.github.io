@@ -1,112 +1,227 @@
 ---
 layout: default
 title: Tags
+permalink: /tags/
 ---
 
 <div class="tags-page">
-  <h1>Tags</h1>
+    <div class="container">
+        <header class="page-header">
+            <h1 class="page-title">Tags</h1>
+            <p class="page-description">Browse posts by tags</p>
+        </header>
 
-  {% assign tags = site.tags | sort %}
-  
-  <div class="tag-cloud">
-    {% for tag in tags %}
-      <a href="#{{ tag[0] }}" class="tag" data-count="{{ tag[1].size }}">
-        #{{ tag[0] }}
-        <span class="tag-count">{{ tag[1].size }}</span>
-      </a>
-    {% endfor %}
-  </div>
+        <div class="tags-content">
+            <div class="tag-cloud">
+                {% assign tags = site.tags | sort %}
+                {% for tag in tags %}
+                <a href="#{{ tag[0] | slugify }}" class="tag-link" data-count="{{ tag[1].size }}">
+                    #{{ tag[0] }}
+                    <span class="tag-count">{{ tag[1].size }}</span>
+                </a>
+                {% endfor %}
+            </div>
 
-  <div class="tag-sections">
-    {% for tag in tags %}
-      <section id="{{ tag[0] }}" class="tag-section">
-        <h2>#{{ tag[0] }}</h2>
-        <ul class="post-list">
-          {% for post in tag[1] %}
-            <li class="post-item">
-              <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </section>
-    {% endfor %}
-  </div>
+            <div class="tag-sections">
+                {% for tag in tags %}
+                <section id="{{ tag[0] | slugify }}" class="tag-section">
+                    <h2 class="tag-title">#{{ tag[0] }}</h2>
+                    <ul class="post-list">
+                        {% for post in tag[1] %}
+                        <li class="post-item">
+                            <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                                {{ post.date | date: "%B %d, %Y" }}
+                            </time>
+                            <a href="{{ post.url }}" class="post-link">
+                                {{ post.title }}
+                            </a>
+                            {% if post.categories %}
+                            <div class="post-categories">
+                                {% for category in post.categories limit:1 %}
+                                <span class="post-category">{{ category }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-  .tags-page {
-    margin: var(--space-xl) 0;
-  }
+    .tags-page {
+        padding: var(--space-16) 0;
+    }
 
-  .tags-page h1 {
-    text-align: center;
-    margin-bottom: var(--space-xl);
-  }
+    .page-header {
+        text-align: center;
+        margin-bottom: var(--space-16);
+    }
 
-  .tag-cloud {
-    margin: var(--space-xl) 0;
-    text-align: center;
-  }
+    .page-title {
+        font-size: var(--text-5xl);
+        margin-bottom: var(--space-4);
+    }
 
-  .tag {
-    display: inline-block;
-    margin: var(--space-xs);
-    padding: var(--space-xs) var(--space-sm);
-    background: var(--color-gray-light);
-    border-radius: 4px;
-    border-bottom: none;
-    transition: all var(--transition-base);
-  }
+    .page-description {
+        color: var(--color-text-muted);
+        font-size: var(--text-xl);
+    }
 
-  .tag:hover {
-    background: var(--color-black);
-    color: var(--color-white);
-  }
+    .tags-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-  .tag-count {
-    margin-left: var(--space-xs);
-    font-size: var(--text-xs);
-    opacity: 0.7;
-  }
+    .tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        margin-bottom: var(--space-16);
+        padding: var(--space-8);
+        background: var(--color-bg-subtle);
+        border-radius: var(--radius-lg);
+    }
 
-  .tag-section {
-    margin: var(--space-xl) 0;
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-gray-light);
-  }
+    .tag-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-4);
+        background: var(--color-bg);
+        color: var(--color-text);
+        border-radius: var(--radius-full);
+        font-size: var(--text-sm);
+        transition: var(--transition);
+        border: 1px solid var(--color-border);
+    }
 
-  .tag-section h2 {
-    margin-bottom: var(--space-md);
-  }
+    .tag-link:hover {
+        color: var(--color-accent);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
 
-  .post-list {
-    list-style: none;
-    padding: 0;
-  }
+    .tag-count {
+        background: var(--color-bg-subtle);
+        color: var(--color-text-muted);
+        padding: 0.125rem 0.5rem;
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+    }
 
-  .post-item {
-    margin: var(--space-sm) 0;
-    display: flex;
-    align-items: baseline;
-  }
+    .tag-sections {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-16);
+    }
 
-  .post-date {
-    color: var(--color-gray-medium);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    margin-right: var(--space-md);
-    flex-shrink: 0;
-  }
+    .tag-section {
+        scroll-margin-top: var(--space-16);
+    }
 
-  @media (max-width: 768px) {
+    .tag-title {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-4);
+        border-bottom: 2px solid var(--color-border);
+        color: var(--color-accent);
+    }
+
+    .post-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
     .post-item {
-      flex-direction: column;
-      margin: var(--space-md) 0;
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        padding: var(--space-3) 0;
+        transition: var(--transition);
+    }
+
+    .post-item:hover {
+        transform: translateX(var(--space-2));
     }
 
     .post-date {
-      margin-bottom: var(--space-xs);
+        font-family: var(--font-mono);
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        white-space: nowrap;
     }
-  }
+
+    .post-link {
+        flex: 1;
+        color: var(--color-text);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .post-link:hover {
+        color: var(--color-accent);
+    }
+
+    .post-categories {
+        display: flex;
+        gap: var(--space-2);
+    }
+
+    .post-category {
+        font-size: var(--text-sm);
+        color: var(--color-accent);
+        background: var(--color-bg-subtle);
+        padding: 0 var(--space-2);
+        border-radius: var(--radius);
+    }
+
+    @media (max-width: 640px) {
+        .tags-page {
+            padding: var(--space-8) 0;
+        }
+
+        .page-title {
+            font-size: var(--text-4xl);
+        }
+
+        .page-description {
+            font-size: var(--text-lg);
+        }
+
+        .tag-cloud {
+            padding: var(--space-4);
+        }
+
+        .tag-title {
+            font-size: var(--text-2xl);
+        }
+
+        .post-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--space-1);
+            padding: var(--space-4) 0;
+        }
+    }
 </style>
+
+<script>
+    // Smooth scroll to tag sections
+    document.querySelectorAll('.tag-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = link.getAttribute('href').substring(1);
+            const element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>

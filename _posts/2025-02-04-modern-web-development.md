@@ -3,8 +3,8 @@ layout: post
 title: Modern Web Development Practices
 description: Explore the latest trends and best practices in modern web development
 date: 2025-02-04
-author: Your Name
-author_avatar: /assets/images/authors/default-avatar.png
+author: congem
+cover_image: https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?cs=srgb&dl=pexels-veeterzy-39811.jpg&fm=jpg
 tags: [web development, javascript, performance]
 ---
 

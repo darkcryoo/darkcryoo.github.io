@@ -3,8 +3,8 @@ layout: post
 title: Getting Started with Jekyll
 description: Learn how to build a modern blog with Jekyll and deploy it to GitHub Pages
 date: 2025-02-04
-author: Your Name
-author_avatar: /assets/images/authors/default-avatar.png
+author: conganh
+cover_image: https://w0.peakpx.com/wallpaper/720/62/HD-wallpaper-the-way-to-get-started-is-to-quit-talking-and-begin-doing-walt-disney-quotes-minimalism-start-quotes-gray-background-popular-quotes.jpg
 tags: [jekyll, tutorial, web development]
 ---
 
