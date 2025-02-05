@@ -201,6 +201,15 @@ layout: default
         margin-bottom: var(--space-8);
     }
 
+    .post-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--radius-lg);
+        margin: var(--space-6) 0;
+        display: block;
+        box-shadow: var(--shadow-lg);
+    }
+
     .post-content h2 {
         font-size: 1.875rem;
         font-weight: 700;
@@ -334,6 +343,34 @@ layout: default
         .post-content pre {
             margin: var(--space-4) calc(var(--space-4) * -1);
             padding: var(--space-4);
+        }
+    }
+
+    /* Responsive cho ảnh lớn */
+    @media (min-width: 768px) {
+        .post-content img {
+            max-height: 600px;
+            object-fit: contain;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    /* Responsive cho ảnh trên mobile */
+    @media (max-width: 767px) {
+        .post-content img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin: var(--space-4) 0;
+        }
+        
+        .post-hero {
+            margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-4);
+        }
+
+        .post-cover {
+            aspect-ratio: 16/9;
         }
     }
 </style>

@@ -1,0 +1,431 @@
+---
+layout: default
+---
+
+<div class="product-detail">
+    <div class="product-header">
+        <div class="breadcrumb">
+            <a href="/shop">Shop</a>
+            <span class="separator">/</span>
+            <span class="current">{{ page.title }}</span>
+        </div>
+    </div>
+
+    <div class="product-content">
+        <div class="product-gallery">
+            <div class="main-image">
+                <img src="{{ page.image }}" alt="{{ page.title }}">
+                {% if page.tag %}
+                <span class="product-tag">{{ page.tag }}</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="product-info">
+            <h1 class="product-title">{{ page.title }}</h1>
+            
+            <div class="product-price">{{ page.price | number_with_delimiter }} VNĐ</div>
+            
+            <div class="product-description">
+                {{ page.description }}
+            </div>
+
+            <div class="product-features">
+                <h3>Đặc điểm nổi bật</h3>
+                <ul>
+                    {% for feature in page.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="product-meta">
+                <div class="meta-item">
+                    <span class="label">Kích thước:</span>
+                    <span class="value">{{ page.dimensions }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Chất liệu:</span>
+                    <span class="value">{{ page.materials }}</span>
+                </div>
+                {% if page.limited_quantity %}
+                <div class="meta-item limited">
+                    <span class="label">Số lượng giới hạn:</span>
+                    <span class="value">{{ page.limited_quantity }} box</span>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="product-actions">
+                <a href="#product-details" class="details-button">
+                    <span>Xem chi tiết</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <a href="https://facebook.com/goten2308" class="buy-button" target="_blank">
+                    <span>Liên hệ mua</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="product-details" class="product-details">
+        <div class="tabs">
+            <button class="tab active" data-tab="description">Mô tả chi tiết</button>
+            <button class="tab" data-tab="policy">Chính sách</button>
+            <button class="tab" data-tab="shipping">Vận chuyển</button>
+        </div>
+
+        <div class="tab-content active" data-tab="description">
+            {{ content }}
+        </div>
+
+        <div class="tab-content" data-tab="policy">
+            <h3>Chính sách bảo hành</h3>
+            <ul>
+                <li>Đảm bảo nguyên vẹn seal khi nhận hàng</li>
+                <li>Hỗ trợ đổi trả nếu có lỗi từ nhà sản xuất</li>
+                <li>Tư vấn và hỗ trợ 24/7</li>
+            </ul>
+
+            <h3>Lưu ý</h3>
+            <ul>
+                <li>Sản phẩm không bán riêng lẻ các items bên trong</li>
+                <li>Không đổi trả với lý do không thích items nhận được</li>
+                <li>Số lượng có hạn mỗi đợt</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" data-tab="shipping">
+            <h3>Thông tin vận chuyển</h3>
+            <ul>
+                <li>Giao hàng toàn quốc</li>
+                <li>Thời gian giao hàng: 3-5 ngày làm việc</li>
+                <li>Phí ship tùy thuộc vào khu vực</li>
+                <li>Đóng gói cẩn thận, chống sốc</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-detail {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-8);
+    }
+
+    .breadcrumb {
+        margin-bottom: var(--space-8);
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+    }
+
+    .breadcrumb a {
+        color: var(--color-text);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .breadcrumb a:hover {
+        color: var(--color-accent);
+    }
+
+    .breadcrumb .separator {
+        margin: 0 var(--space-2);
+    }
+
+    .product-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        margin-bottom: var(--space-12);
+        align-items: start;
+    }
+
+    .product-gallery {
+        position: sticky;
+        top: var(--space-20);
+    }
+
+    .main-image {
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .main-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .product-tag {
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-4);
+        background: var(--color-accent);
+        color: white;
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        box-shadow: var(--shadow);
+    }
+
+    .product-title {
+        font-size: var(--text-4xl);
+        font-weight: 800;
+        margin-bottom: var(--space-4);
+        line-height: 1.2;
+    }
+
+    .product-price {
+        font-size: var(--text-3xl);
+        font-weight: 700;
+        color: var(--color-accent);
+        margin-bottom: var(--space-6);
+    }
+
+    .product-description {
+        font-size: var(--text-lg);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-6);
+        line-height: 1.6;
+    }
+
+    .product-features {
+        margin-bottom: var(--space-6);
+    }
+
+    .product-features h3 {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-4);
+    }
+
+    .product-features ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .product-features li {
+        padding: var(--space-2) 0;
+        display: flex;
+        align-items: center;
+        color: var(--color-text-muted);
+    }
+
+    .product-features li::before {
+        content: "•";
+        color: var(--color-accent);
+        font-weight: bold;
+        margin-right: var(--space-2);
+    }
+
+    .product-meta {
+        background: var(--color-bg-subtle);
+        padding: var(--space-4);
+        border-radius: var(--radius);
+        margin-bottom: var(--space-6);
+    }
+
+    .meta-item {
+        display: flex;
+        justify-content: space-between;
+        padding: var(--space-2) 0;
+        border-bottom: 1px dashed var(--color-border);
+    }
+
+    .meta-item:last-child {
+        border-bottom: none;
+    }
+
+    .meta-item .label {
+        color: var(--color-text-muted);
+    }
+
+    .meta-item .value {
+        font-weight: 500;
+    }
+
+    .limited .value {
+        color: var(--color-accent);
+        font-weight: 600;
+    }
+
+    .product-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .details-button,
+    .buy-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        width: 100%;
+        padding: var(--space-4);
+        border-radius: var(--radius);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+    }
+
+    .details-button {
+        background: var(--color-bg-subtle);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+    }
+
+    .buy-button {
+        background: var(--color-accent);
+        color: white;
+    }
+
+    .details-button:hover,
+    .buy-button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+    }
+
+    .product-details {
+        margin-top: var(--space-12);
+        padding-top: var(--space-12);
+        border-top: 1px solid var(--color-border);
+    }
+
+    .tabs {
+        display: flex;
+        gap: var(--space-4);
+        margin-bottom: var(--space-8);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .tab {
+        padding: var(--space-4) var(--space-6);
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        color: var(--color-text-muted);
+        cursor: pointer;
+        font-weight: 500;
+        transition: var(--transition);
+    }
+
+    .tab:hover {
+        color: var(--color-text);
+    }
+
+    .tab.active {
+        color: var(--color-accent);
+        border-bottom-color: var(--color-accent);
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .tab-content h3 {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-4);
+    }
+
+    .tab-content ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .tab-content li {
+        padding: var(--space-2) 0;
+        color: var(--color-text-muted);
+        display: flex;
+        align-items: center;
+    }
+
+    .tab-content li::before {
+        content: "•";
+        color: var(--color-accent);
+        font-weight: bold;
+        margin-right: var(--space-2);
+    }
+
+    .tab-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--radius-lg);
+        margin: var(--space-6) 0;
+        display: block;
+        box-shadow: var(--shadow-lg);
+    }
+
+    /* Responsive cho ảnh trong tab content */
+    @media (min-width: 768px) {
+        .tab-content img {
+            max-height: 600px;
+            object-fit: contain;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .tab-content img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            margin: var(--space-4) 0;
+        }
+        
+        .product-content {
+            grid-template-columns: 1fr;
+        }
+
+        .product-gallery {
+            position: static;
+        }
+
+        .main-image {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding content
+            tab.classList.add('active');
+            document.querySelector(`.tab-content[data-tab="${tabId}"]`).classList.add('active');
+        });
+    });
+});
+</script> 

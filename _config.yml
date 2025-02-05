@@ -46,6 +46,9 @@ collections:
   pages:
     output: true
     permalink: /:name
+  products:
+    output: true
+    permalink: /shop/:path/
 
 # Defaults
 defaults:
@@ -62,6 +65,11 @@ defaults:
       type: "pages"
     values:
       layout: "default"
+  - scope:
+      path: ""
+      type: "products"
+    values:
+      layout: "product"
 
 # Compression settings
 sass:
@@ -111,3 +119,12 @@ page_not_found:
   description: The page you're looking for doesn't exist or has been moved.
   show_search: true
   show_recent_posts: true
+
+# Custom filters
+number_format: true
+number_with_delimiter:
+  delimiter: ","
+  separator: "."
+  precision: 0
+  significant: false
+  strip_insignificant_zeros: false

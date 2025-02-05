@@ -1,0 +1,434 @@
+---
+layout: default
+title: Shop
+permalink: /shop/
+---
+
+<div class="shop-container">
+    <div class="shop-header">
+        <h1>BlindBox Shop</h1>
+        <p class="shop-description">Khám phá bộ sưu tập BlindBox độc đáo của chúng tôi. Mỗi hộp là một bất ngờ thú vị!</p>
+    </div>
+
+    <div class="product-grid">
+        {% for product in site.products %}
+        <div class="product-card">
+            <div class="product-image">
+                <img src="{{ product.image }}" alt="{{ product.title }}">
+                <span class="product-tag {% if product.tag == 'Limited' %}limited-tag{% elsif product.tag == 'Hot' %}hot-tag{% endif %}">
+                    {% if product.tag == 'Limited' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    {% elsif product.tag == 'Hot' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2c0 6-8 8-8 14a8 8 0 0 0 16 0c0-6-8-8-8-14z"></path>
+                    </svg>
+                    {% endif %}
+                    {{ product.tag }}
+                </span>
+            </div>
+            <div class="product-content">
+                <h3 class="product-title">{{ product.title }}</h3>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-features">
+                    <ul>
+                        {% for feature in product.features %}
+                        <li>{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="product-meta">
+                    <div class="product-info">
+                        <span class="info-label">Kích thước:</span>
+                        <span class="info-value">{{ product.dimensions }}</span>
+                    </div>
+                    {% if product.limited_quantity %}
+                    <div class="product-info limited">
+                        <span class="info-label">Số lượng giới hạn:</span>
+                        <span class="info-value">{{ product.limited_quantity }} box</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="product-price">
+                    {{ product.price | number_with_delimiter }} VNĐ
+                </div>
+                <div class="product-actions">
+                    <a href="{{ product.url }}" class="action-button details-button">
+                        <span>Xem chi tiết</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="https://facebook.com/goten2308" class="action-button buy-button" target="_blank">
+                        <span>Liên hệ mua</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="shop-info">
+        <h2>Thông tin mua hàng</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <h3>Giao hàng</h3>
+                <p>Giao hàng toàn quốc, phí ship tùy khu vực</p>
+            </div>
+            <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                <h3>Thanh toán</h3>
+                <p>Chuyển khoản hoặc COD</p>
+            </div>
+            <div class="info-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <h3>Liên hệ</h3>
+                <p>Inbox Facebook để đặt hàng</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .shop-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-8);
+    }
+
+    .shop-header {
+        text-align: center;
+        margin-bottom: var(--space-12);
+    }
+
+    .shop-header h1 {
+        font-size: var(--text-5xl);
+        margin-bottom: var(--space-4);
+        background: linear-gradient(to right, var(--color-text), var(--color-accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .shop-description {
+        font-size: var(--text-xl);
+        color: var(--color-text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: var(--space-8);
+        margin-bottom: var(--space-16);
+    }
+
+    .product-card {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: var(--transition);
+        background: var(--color-bg);
+    }
+
+    .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .product-image {
+        position: relative;
+        width: 100%;
+        padding-top: 100%; /* Tạo khung hình vuông */
+        background: var(--color-bg-subtle);
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.1);
+    }
+
+    /* Thêm overlay khi hover */
+    .product-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .product-card:hover .product-image::after {
+        opacity: 1;
+    }
+
+    .product-tag {
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-4);
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius);
+        font-size: var(--text-sm);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        box-shadow: var(--shadow);
+    }
+
+    .product-tag svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .limited-tag {
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: #000;
+    }
+
+    .limited-tag svg {
+        stroke: #000;
+    }
+
+    .hot-tag {
+        background: linear-gradient(135deg, #FF4D4D, #FF0000);
+        color: white;
+    }
+
+    .hot-tag svg {
+        stroke: white;
+    }
+
+    .product-tag:not(.limited-tag):not(.hot-tag) {
+        background: var(--color-accent);
+        color: white;
+    }
+
+    .product-content {
+        padding: var(--space-6);
+    }
+
+    .product-title {
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-2);
+    }
+
+    .product-description {
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-4);
+    }
+
+    .product-features {
+        margin-bottom: var(--space-4);
+    }
+
+    .product-features ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .product-features li {
+        padding: var(--space-2) 0;
+        color: var(--color-text-muted);
+        display: flex;
+        align-items: center;
+    }
+
+    .product-features li::before {
+        content: "•";
+        color: var(--color-accent);
+        font-weight: bold;
+        margin-right: var(--space-2);
+    }
+
+    .product-meta {
+        background: var(--color-bg-subtle);
+        padding: var(--space-4);
+        border-radius: var(--radius);
+        margin-bottom: var(--space-4);
+    }
+
+    .product-info {
+        display: flex;
+        justify-content: space-between;
+        padding: var(--space-2) 0;
+        border-bottom: 1px dashed var(--color-border);
+    }
+
+    .product-info:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+    }
+
+    .info-value {
+        font-weight: 500;
+        font-size: var(--text-sm);
+    }
+
+    .limited .info-value {
+        color: var(--color-accent);
+        font-weight: 600;
+    }
+
+    .product-price {
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: var(--color-accent);
+        margin-bottom: var(--space-4);
+        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--space-1);
+    }
+
+    .product-price .currency {
+        font-size: 0.8em;
+        font-weight: 500;
+    }
+
+    .product-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        margin-top: var(--space-6);
+    }
+
+    .action-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        width: 100%;
+        padding: var(--space-4);
+        border-radius: var(--radius);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+    }
+
+    .details-button {
+        background: var(--color-bg-subtle);
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+    }
+
+    .buy-button {
+        background: var(--color-accent);
+        color: white;
+    }
+
+    .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+    }
+
+    .shop-info {
+        margin-top: var(--space-16);
+        text-align: center;
+    }
+
+    .shop-info h2 {
+        margin-bottom: var(--space-8);
+        font-size: var(--text-3xl);
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-8);
+    }
+
+    .info-card {
+        padding: var(--space-6);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-4);
+        transition: var(--transition);
+    }
+
+    .info-card:hover {
+        border-color: var(--color-accent);
+        transform: translateY(-2px);
+    }
+
+    .info-card svg {
+        color: var(--color-accent);
+        width: 32px;
+        height: 32px;
+    }
+
+    .info-card h3 {
+        font-size: var(--text-xl);
+        margin: 0;
+    }
+
+    .info-card p {
+        color: var(--color-text-muted);
+        margin: 0;
+    }
+
+    @media (min-width: 1200px) {
+        .product-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 767px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .product-image {
+            padding-top: 75%; /* Tỷ lệ 4:3 trên mobile */
+        }
+        
+        .product-card {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    }
+</style> 
