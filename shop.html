@@ -6,7 +6,12 @@ permalink: /shop/
 
 <div class="shop-container">
     <div class="shop-header">
-        <h1>BlindBox Shop</h1>
+        <div class="shop-brand">
+            <div class="brand-logo">
+                <img src="https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-6/480235154_641220964963809_5855488740693144027_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=o29y89Q6a50Q7kNvgH0XKZZ&_nc_oc=AdgdpE3DYdjXF7mzpa4llkHYRildyQUcIs4LKTk5ToDa2n7SHkjRuPGKGx3Wx9rA-pw&_nc_zt=23&_nc_ht=scontent.fhan14-3.fna&_nc_gid=AyuIXNHF5YnMcWnHYbvd9IU&oh=00_AYDmidcda3aZnP6x6GWQ0bpn1HXb_lHYrxsrB__4Yq7kiA&oe=67B9FDAD" alt="BlindBox Logo">
+            </div>
+            <h1>BlindBox Shop</h1>
+        </div>
         <p class="shop-description">Khám phá bộ sưu tập BlindBox độc đáo của chúng tôi. Mỗi hộp là một bất ngờ thú vị!</p>
     </div>
 
@@ -15,7 +20,7 @@ permalink: /shop/
         <div class="product-card">
             <div class="product-image">
                 <img src="{{ product.image }}" alt="{{ product.title }}">
-                <span class="product-tag {% if product.tag == 'Limited' %}limited-tag{% elsif product.tag == 'Hot' %}hot-tag{% endif %}">
+                <span class="product-tag {% if product.tag == 'Limited' %}limited-tag{% elsif product.tag == 'Hot' %}hot-tag{% elsif product.tag == 'Sale' %}sale-tag{% endif %}">
                     {% if product.tag == 'Limited' %}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -24,6 +29,12 @@ permalink: /shop/
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2c0 6-8 8-8 14a8 8 0 0 0 16 0c0-6-8-8-8-14z"></path>
                     </svg>
+                    {% elsif product.tag == 'Sale' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="5" x2="5" y2="19"></line>
+                        <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                        <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                    </svg>
                     {% endif %}
                     {{ product.tag }}
                 </span>
@@ -31,25 +42,6 @@ permalink: /shop/
             <div class="product-content">
                 <h3 class="product-title">{{ product.title }}</h3>
                 <p class="product-description">{{ product.description }}</p>
-                <div class="product-features">
-                    <ul>
-                        {% for feature in product.features %}
-                        <li>{{ feature }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="product-meta">
-                    <div class="product-info">
-                        <span class="info-label">Kích thước:</span>
-                        <span class="info-value">{{ product.dimensions }}</span>
-                    </div>
-                    {% if product.limited_quantity %}
-                    <div class="product-info limited">
-                        <span class="info-label">Số lượng giới hạn:</span>
-                        <span class="info-value">{{ product.limited_quantity }} box</span>
-                    </div>
-                    {% endif %}
-                </div>
                 <div class="product-price">
                     {{ product.price | number_with_delimiter }} VNĐ
                 </div>
@@ -116,13 +108,53 @@ permalink: /shop/
         margin-bottom: var(--space-12);
     }
 
-    .shop-header h1 {
-        font-size: var(--text-5xl);
-        margin-bottom: var(--space-4);
+    .shop-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-6);
+        margin-bottom: var(--space-8);
+    }
+
+    .brand-logo {
+        width: 100%;
+        max-width: 800px;
+        height: 300px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        padding: 0;
+        border: 3px solid var(--color-accent);
+        transition: var(--transition);
+    }
+
+    .brand-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .brand-logo:hover {
+        transform: translateY(-4px);
+    }
+
+    .shop-brand h1 {
+        font-size: var(--text-4xl);
+        margin: 0;
         background: linear-gradient(to right, var(--color-text), var(--color-accent));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+    }
+
+    [data-theme="dark"] .brand-logo {
+        background: var(--color-bg-subtle);
+        border-color: var(--color-accent);
     }
 
     .shop-description {
@@ -145,11 +177,30 @@ permalink: /shop/
         overflow: hidden;
         transition: var(--transition);
         background: var(--color-bg);
+        position: relative;
+        display: flex;
+        flex-direction: column;
     }
 
     .product-card:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-lg);
+    }
+
+    .product-card:hover .product-features,
+    .product-card:hover .product-meta {
+        max-height: 500px;
+        opacity: 1;
+        margin-bottom: var(--space-4);
+    }
+
+    .product-features,
+    .product-meta {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-bottom: 0;
     }
 
     .product-image {
@@ -216,116 +267,66 @@ permalink: /shop/
         color: #000;
     }
 
-    .limited-tag svg {
-        stroke: #000;
-    }
-
     .hot-tag {
         background: linear-gradient(135deg, #FF4D4D, #FF0000);
         color: white;
     }
 
-    .hot-tag svg {
-        stroke: white;
+    .sale-tag {
+        background: linear-gradient(135deg, #22C55E, #16A34A);
+        color: white;
     }
 
-    .product-tag:not(.limited-tag):not(.hot-tag) {
+    .product-tag:not(.limited-tag):not(.hot-tag):not(.sale-tag) {
         background: var(--color-accent);
         color: white;
     }
 
     .product-content {
-        padding: var(--space-6);
+        padding: var(--space-4);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        flex: 1;
+        min-height: 200px;
     }
 
     .product-title {
-        font-size: var(--text-2xl);
-        margin-bottom: var(--space-2);
+        font-size: var(--text-xl);
+        font-weight: 700;
+        margin: 0;
+        background: linear-gradient(45deg, var(--color-text), var(--color-accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.3;
     }
 
     .product-description {
         color: var(--color-text-muted);
-        margin-bottom: var(--space-4);
-    }
-
-    .product-features {
-        margin-bottom: var(--space-4);
-    }
-
-    .product-features ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .product-features li {
-        padding: var(--space-2) 0;
-        color: var(--color-text-muted);
-        display: flex;
-        align-items: center;
-    }
-
-    .product-features li::before {
-        content: "•";
-        color: var(--color-accent);
-        font-weight: bold;
-        margin-right: var(--space-2);
-    }
-
-    .product-meta {
-        background: var(--color-bg-subtle);
-        padding: var(--space-4);
-        border-radius: var(--radius);
-        margin-bottom: var(--space-4);
-    }
-
-    .product-info {
-        display: flex;
-        justify-content: space-between;
-        padding: var(--space-2) 0;
-        border-bottom: 1px dashed var(--color-border);
-    }
-
-    .product-info:last-child {
-        border-bottom: none;
-    }
-
-    .info-label {
-        color: var(--color-text-muted);
         font-size: var(--text-sm);
-    }
-
-    .info-value {
-        font-weight: 500;
-        font-size: var(--text-sm);
-    }
-
-    .limited .info-value {
-        color: var(--color-accent);
-        font-weight: 600;
+        margin: 0;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .product-price {
-        font-size: var(--text-2xl);
+        font-size: var(--text-xl);
         font-weight: 700;
         color: var(--color-accent);
-        margin-bottom: var(--space-4);
+        margin: auto 0 var(--space-2) 0;
         text-align: right;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: var(--space-1);
-    }
-
-    .product-price .currency {
-        font-size: 0.8em;
-        font-weight: 500;
     }
 
     .product-actions {
         display: flex;
-        flex-direction: column;
-        gap: var(--space-4);
-        margin-top: var(--space-6);
+        flex-direction: row;
+        gap: var(--space-2);
+        margin-top: auto;
+        padding-top: var(--space-2);
     }
 
     .action-button {
@@ -333,12 +334,14 @@ permalink: /shop/
         align-items: center;
         justify-content: center;
         gap: var(--space-2);
-        width: 100%;
-        padding: var(--space-4);
+        width: 50%;
+        padding: var(--space-2) var(--space-3);
         border-radius: var(--radius);
         text-decoration: none;
         font-weight: 500;
+        font-size: var(--text-sm);
         transition: var(--transition);
+        white-space: nowrap;
     }
 
     .details-button {
@@ -430,5 +433,25 @@ permalink: /shop/
             max-width: 500px;
             margin: 0 auto;
         }
+        
+        .brand-logo {
+            height: 200px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .product-actions {
+            flex-direction: column;
+        }
+        
+        .action-button {
+            width: 100%;
+        }
+    }
+
+    [data-theme="dark"] .product-title {
+        background: linear-gradient(45deg, #fff, var(--color-accent));
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 </style> 

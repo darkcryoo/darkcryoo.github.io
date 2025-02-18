@@ -1,9 +1,9 @@
 ---
 layout: product
 title: "Baby Three Bunny Macaron"
-price: 350000
+price: "******"
 image: https://bizweb.dktcdn.net/100/443/377/products/1-1732355277015.jpg?v=1732355594830
-tag: Limited
+tag: Sale
 description: "Phiên bản giới hạn dành cho các nhà sưu tập thực thụ."
 features:
   - "Khi mua sẽ nhận 1 hộp"
@@ -11,7 +11,7 @@ features:
   - "SECRET là mẫu hiếm (mẫu ẩn trên hộp)"
 stock: true
 dimensions: "~16 cm"
-materials: "PVC, Sang trọng Kích"
+materials: "PVC, Sang trọng"
 limited_quantity: 6
 ---
 
